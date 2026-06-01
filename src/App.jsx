@@ -1,14 +1,39 @@
+// Importing routing components
+import { Routes, Route } from "react-router-dom";
+
+// Importing pages
+import Home from "./pages/Home";
+import BrowseBooks from "./pages/BrowseBooks";
+import BookDetails from "./pages/BookDetails";
+import AddBook from "./pages/AddBook";
+import NotFound from "./pages/NotFound";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">
-        Online Library System
-      </h1>
+    <>
+      {/* Application Routes */}
+      <Routes>
 
-      <button className="mt-5 bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600">
-        Tailwind Working
-      </button>
-    </div>
+        {/* Home page */}
+        <Route path="/" element={<Home />} />
+
+        {/* Browse books page */}
+        <Route path="/books" element={<BrowseBooks />} />
+
+        {/* Dynamic category route */}
+        <Route path="/books/:category" element={<BrowseBooks />} />
+
+        {/* Dynamic book details route */}
+        <Route path="/book/:id" element={<BookDetails />} />
+
+        {/* Add book page */}
+        <Route path="/add-book" element={<AddBook />} />
+
+        {/* 404 page */}
+        <Route path="*" element={<NotFound />} />
+
+      </Routes>
+    </>
   );
 }
 
