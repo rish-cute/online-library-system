@@ -13,7 +13,6 @@ function App() {
     <>
       {/* Application Routes */}
       <Routes>
-
         {/* Home page */}
         <Route path="/" element={<Home />} />
 
@@ -31,7 +30,6 @@ function App() {
 
         {/* 404 page */}
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </>
   );

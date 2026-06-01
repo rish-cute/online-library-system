@@ -13,11 +13,9 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-
     {/* Browser Router wrapper */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-
   </React.StrictMode>
 );
