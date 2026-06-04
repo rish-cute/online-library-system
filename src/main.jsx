@@ -2,20 +2,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// Importing Browser Router
+// React Router
 import { BrowserRouter } from "react-router-dom";
 
-// Importing main App component
+// Redux
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
+// Main App
 import App from "./App";
 
-// Importing Tailwind CSS
+// Styles
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Browser Router wrapper */}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+
+    {/* Redux Provider */}
+    <Provider store={store}>
+
+      {/* Browser Router */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+
+    </Provider>
+
   </React.StrictMode>
 );

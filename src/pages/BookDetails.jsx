@@ -2,16 +2,21 @@
 import { useParams, Link } from "react-router-dom";
 
 // Importing books data
-import booksData from "../data/booksData";
+import { useSelector } from "react-redux";
 
 function BookDetails() {
   // Getting book ID from URL
   const { id } = useParams();
 
-  // Finding selected book
-  const book = booksData.find(
-    (book) => book.id === Number(id)
-  );
+  // Getting books from Redux store
+const books = useSelector(
+  (state) => state.books.books
+);
+
+// Finding selected book
+const book = books.find(
+  (book) => book.id === Number(id)
+);
 
   // Handling invalid IDs
   if (!book) {
@@ -33,7 +38,8 @@ function BookDetails() {
         <div className="flex justify-center bg-slate-100 p-6">
 
           <img
-            src={book.image}
+            src={book.image ||
+              "https://placehold.co/300x450?text=Book+Cover"}
             alt={book.title}
             className="h-96 object-contain"
           />

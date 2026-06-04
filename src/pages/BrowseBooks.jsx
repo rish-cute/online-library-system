@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
 // Importing books data
-import booksData from "../data/booksData";
+import { useSelector } from "react-redux";
 
 function BrowseBooks() {
   // Getting category from URL
@@ -14,14 +14,20 @@ function BrowseBooks() {
   // Search input state
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter books by category if category exists
-  const categoryBooks = category
-    ? booksData.filter(
-        (book) =>
-          book.category.toLowerCase() ===
-          category.toLowerCase()
-      )
-    : booksData;
+  // Getting books from Redux store
+const books = useSelector(
+  (state) => state.books.books
+);
+
+// Filter books by category if category exists
+const categoryBooks = category
+  ? books.filter(
+      (book) =>
+        book.category.toLowerCase() ===
+        category.toLowerCase()
+    )
+  : books;
+    
 
   // Filter books by search term
   const filteredBooks = categoryBooks.filter(
@@ -95,7 +101,8 @@ function BrowseBooks() {
               >
 
                 <img
-                  src={book.image}
+                  src={book.image ||
+                    "https://placehold.co/300x450?text=Book+Cover"}
                   alt={book.title}
                   className="h-80 w-full object-contain bg-white"
                 />

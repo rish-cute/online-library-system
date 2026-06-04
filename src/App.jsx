@@ -1,10 +1,7 @@
-// Importing routing components
 import { Routes, Route, useLocation } from "react-router-dom";
 
-// Importing components
 import Navbar from "./components/Navbar";
 
-// Importing pages
 import Home from "./pages/Home";
 import BrowseBooks from "./pages/BrowseBooks";
 import BookDetails from "./pages/BookDetails";
@@ -12,19 +9,24 @@ import AddBook from "./pages/AddBook";
 import NotFound from "./pages/NotFound";
 
 function App() {
-
-  // Getting current route
   const location = useLocation();
 
-  // Hide navbar on 404 page
-  const showNavbar = location.pathname !== "/random-page";
+  const validRoutes = [
+    "/",
+    "/books",
+    "/add-book",
+  ];
+
+  const shouldShowNavbar =
+    validRoutes.includes(location.pathname) ||
+    location.pathname.startsWith("/books/") ||
+    location.pathname.startsWith("/book/");
 
   return (
     <>
-      {showNavbar && <Navbar />}
+      {shouldShowNavbar && <Navbar />}
 
       <Routes>
-
         <Route path="/" element={<Home />} />
 
         <Route path="/books" element={<BrowseBooks />} />
@@ -48,7 +50,6 @@ function App() {
           path="*"
           element={<NotFound />}
         />
-
       </Routes>
     </>
   );
